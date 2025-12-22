@@ -1,0 +1,52 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "terminalKind": "integrated",
+            "name": "[Dist] [AWS] Cluster Parking Schedule",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/dist/aws_cluster_parking.sh",
+            "args": ["schedule"],
+            "env": {
+            }
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "terminalKind": "integrated",
+            "name": "[Dist] [AWS] Cluster Parking Delete",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/dist/aws_cluster_parking.sh",
+            "args": ["delete"],
+            "env": {
+            }
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "terminalKind": "integrated",
+            "name": "[AWS] Cluster Parking Schedule",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/scripts/runbooks/cluster_parking/aws/main.sh",
+            "args": ["schedule"],
+            "env": {
+            }
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "terminalKind": "integrated",
+            "name": "[AWS] Cluster Parking Delete",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/scripts/runbooks/cluster_parking/aws/main.sh",
+            "args": ["delete"],
+            "env": {
+            }
+        }
+    ]
+}

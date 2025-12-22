@@ -1,0 +1,39 @@
+{
+  "name": "SAS Workbench Admin Runbooks",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/aws-cli:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rogalmic.bash-debug",
+        "mkhl.shfmt",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "[shellscript]": {
+          "editor.defaultFormatter": "mkhl.shfmt",
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true,
+          "editor.formatOnSave": true,
+          "editor.detectIndentation": false
+        },
+        "shfmt.args": [
+          "-i",
+          "2", // 2 spaces per indent
+          "-ci", // indent case statements properly
+          "-s" // simplify code where possible
+        ],
+        "debug.onTaskErrors": "abort"
+      }
+    }
+  },
+  "updateRemoteUserUID": true,
+  "postCreateCommand": ".devcontainer/post_create.sh"
+}
