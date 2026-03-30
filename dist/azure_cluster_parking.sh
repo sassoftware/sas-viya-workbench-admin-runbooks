@@ -997,9 +997,9 @@ schedule() {
     return 1
   fi
 
-  # if ! check_vault_login; then
-  #   return 1
-  # fi
+  if ! check_vault_login; then
+    return 1
+  fi
 
   local region
   if ! region=$(select_region); then
@@ -1028,16 +1028,16 @@ schedule() {
   fi
 
   local INDENT=$((INDENT + 2))
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   start_cron="${start_cron}" \
-  #   stop_cron="${stop_cron}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="creating" >/dev/null; then
-  #   return 1
-  # fi
-  # log_success "Updated vault with scheduling info."
-  # log ""
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    start_cron="${start_cron}" \
+    stop_cron="${stop_cron}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="creating" >/dev/null; then
+    return 1
+  fi
+  log_success "Updated vault with scheduling info."
+  log ""
 
   if ! upsert_resource_group "${region}"; then
     return 1
@@ -1055,16 +1055,16 @@ schedule() {
     return 1
   fi
 
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   start_cron="${start_cron}" \
-  #   stop_cron="${stop_cron}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="created" >/dev/null; then
-  #   return 1
-  # fi
-  # log_success "Updated vault with scheduling info."
-  # log ""
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    start_cron="${start_cron}" \
+    stop_cron="${stop_cron}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="created" >/dev/null; then
+    return 1
+  fi
+  log_success "Updated vault with scheduling info."
+  log ""
   INDENT=$((INDENT - 2))
 
   log_success "Completed scheduling."
@@ -1073,7 +1073,7 @@ schedule() {
 # Starts an Azure AKS cluster after validating dependencies, environment variables, and credentials.
 # Prompts user to select region and cluster, then starts the cluster and updates Vault with scheduling info.
 start() {
-  if ! check_dependencies "aws" "jq"; then
+  if ! check_dependencies "az" "jq"; then
     return 1
   fi
 
@@ -1085,9 +1085,9 @@ start() {
     return 1
   fi
 
-  # if ! check_vault_login; then
-  #   return 1
-  # fi
+  if ! check_vault_login; then
+    return 1
+  fi
 
   local region
   if ! region=$(select_region); then
@@ -1120,13 +1120,13 @@ start() {
     return 1
   fi
 
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="manually started" >/dev/null; then
-  #   return 1
-  # fi
-  # log_success "Updated vault with scheduling info."
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="manually started" >/dev/null; then
+    return 1
+  fi
+  log_success "Updated vault with scheduling info."
 
   INDENT=$((INDENT - 2))
 
@@ -1137,7 +1137,7 @@ start() {
 # Stops an Azure AKS cluster after validating dependencies, authentication, and environment variables.
 # Prompts user to select a region and cluster, then stops the cluster and updates Vault with scheduling info.
 stop() {
-  if ! check_dependencies "aws" "jq"; then
+  if ! check_dependencies "az" "jq"; then
     return 1
   fi
 
@@ -1149,9 +1149,9 @@ stop() {
     return 1
   fi
 
-  # if ! check_vault_login; then
-  #   return 1
-  # fi
+  if ! check_vault_login; then
+    return 1
+  fi
 
   local region
   if ! region=$(select_region); then
@@ -1184,13 +1184,13 @@ stop() {
     return 1
   fi
 
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="manually stopped" >/dev/null; then
-  #   return 1
-  # fi
-  # log_success "Updated vault with scheduling info."
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="manually stopped" >/dev/null; then
+    return 1
+  fi
+  log_success "Updated vault with scheduling info."
 
   INDENT=$((INDENT - 2))
   log_success "Stopped EKS cluster."
@@ -1213,9 +1213,9 @@ delete() {
     return 1
   fi
 
-  # if ! check_vault_login; then
-  #   return 1
-  # fi
+  if ! check_vault_login; then
+    return 1
+  fi
 
   local region
   if ! region=$(select_region); then
@@ -1238,12 +1238,12 @@ delete() {
 
   local INDENT=$((INDENT + 2))
 
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="deleting" >/dev/null; then
-  #   return 1
-  # fi
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="deleting" >/dev/null; then
+    return 1
+  fi
 
   log_progress "Deleting role assignment..."
 
@@ -1282,12 +1282,12 @@ delete() {
     return 1
   fi
 
-  # log_progress "Updating vault with scheduling info..."
-  # if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
-  #   date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-  #   status="deleted" >/dev/null; then
-  #   return 1
-  # fi
+  log_progress "Updating vault with scheduling info..."
+  if ! vault kv put "${SAS_WORKBENCH_SITE_ID}/workbench/workbench-admin-runbooks/cluster_parking/${RESOURCES_PREFIX}" \
+    date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+    status="deleted" >/dev/null; then
+    return 1
+  fi
 
   INDENT=$((INDENT - 2))
   log_success "Completed deleting created resources of scheduling'."
@@ -1406,7 +1406,6 @@ EOF
 # Parses command line arguments and routes to appropriate action
 main() {
   export INDENT=0
-  export AWS_PAGER=""
 
   # Parse arguments
   if [[ $# -eq 0 ]]; then

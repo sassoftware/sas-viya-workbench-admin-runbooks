@@ -99,7 +99,7 @@ schedule() {
 # Starts an Azure AKS cluster after validating dependencies, environment variables, and credentials.
 # Prompts user to select region and cluster, then starts the cluster and updates Vault with scheduling info.
 start() {
-  if ! check_dependencies "aws" "jq"; then
+  if ! check_dependencies "az" "jq"; then
     return 1
   fi
 
@@ -163,7 +163,7 @@ start() {
 # Stops an Azure AKS cluster after validating dependencies, authentication, and environment variables.
 # Prompts user to select a region and cluster, then stops the cluster and updates Vault with scheduling info.
 stop() {
-  if ! check_dependencies "aws" "jq"; then
+  if ! check_dependencies "az" "jq"; then
     return 1
   fi
 

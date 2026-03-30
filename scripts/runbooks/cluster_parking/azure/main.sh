@@ -128,7 +128,6 @@ EOF
 # Parses command line arguments and routes to appropriate action
 main() {
   export INDENT=0
-  export AWS_PAGER=""
 
   # Parse arguments
   if [[ $# -eq 0 ]]; then
