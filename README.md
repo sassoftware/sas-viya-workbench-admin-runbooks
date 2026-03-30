@@ -6,8 +6,9 @@ Operational runbooks and automation scripts for manangement of SAS® Viya® Work
 
 ## Available Runbooks
 
-- **[Schedule Cluster Shutdown and Start-up for AWS Infrastructure](./scripts/runbooks/cluster_parking/aws/README.md)** - Automatic shut down and start up for Workbench AWS EKS cluster on a schedule (e.g. 9-5pm). 
+- **[Schedule Cluster Shutdown and Start-up for AWS Infrastructure](./scripts/runbooks/cluster_parking/aws/README.md)** - Automatic shut down and start up for Workbench AWS EKS cluster on a schedule (e.g. 9-5pm).
 
+- **[Schedule Cluster Shutdown and Start-up for Azure Infrastructure](./scripts/runbooks/cluster_parking/azure/README.md)** - Automatic shut down and start up for Workbench Azure EKS cluster on a schedule (e.g. 9-5pm).
 
 ## Build Tools (for project maintainers)
 > Note: If you are consuming the runbooks, you can ignore this section.
